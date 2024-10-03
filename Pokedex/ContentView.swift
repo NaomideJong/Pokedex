@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let pokemon: [Pokemon] = .test
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView {
+            List(pokemon) { pokemon in
+                NavigationLink(destination: PokemonDetailView(pokemon: pokemon)){
+                PokemonCell(pokemon: pokemon) }
         }
-        .padding()
+        
+            
+        }
     }
 }
+    
+    #Preview {
+        ContentView()
+            .environmentObject(PokemonFavorites())
+    }
+    
 
-#Preview {
-    ContentView()
-}

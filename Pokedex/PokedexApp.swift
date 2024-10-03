@@ -7,11 +7,18 @@
 
 import SwiftUI
 
+class PokemonFavorites: ObservableObject {
+    @Published var id: [UUID] = []
+}
+
 @main
 struct PokedexApp: App {
+    @StateObject var favorites = PokemonFavorites()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(favorites)
         }
     }
 }
