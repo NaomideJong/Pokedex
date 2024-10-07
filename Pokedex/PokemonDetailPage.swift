@@ -12,10 +12,11 @@ struct PokemonDetailPage: View {
     
     var body: some View {
         VStack{
-            Text(pokemon.type)
+            Text("pokemon detail")
         }
     }
 }
 #Preview {
-    PokemonDetailPage(pokemon: .test)
+    PokemonCell(pokemon: .init(id:1, name:"bulbasaur", types:"grass, poison"))
 }
+	
