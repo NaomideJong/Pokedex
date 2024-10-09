@@ -1,38 +1,39 @@
 //
-//  Created by admin on 10/2/24.
+//  Created by Naomi de Jong on 10/2/24.
 //
 
 import Foundation
 
 struct Pokemon {
     let id: Int
-    private var rawName: String
-    private var typesString: String // Store types as a single string
-
-    var types: String {
-        return typesString // Return the types string
-    }
-
-    var name: String {
-        return rawName.capitalized
-    }
-
-    init(id: Int, name: String, types: String) {
-        self.id = id
-        self.rawName = name
-        self.typesString = types // Store the types string directly
-    }
+    let name: String
 
     var image: URL {
+        if id == 0 {
+            return URL(string: "https://archives.bulbagarden.net/media/upload/9/98/Missingno_RB.png")!
+        }
         return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png")!
     }
     
     var icon: URL {
-        let formattedId: String = String(format: "%04d", id)
-        return URL(string: "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/\(formattedId)/Normal.png")!
-    }
+            if id == 0 {
+                return URL(string: "https://archives.bulbagarden.net/media/upload/9/98/Missingno_RB.png")!
+            }
+            let formattedId: String = String(format: "%04d", id)
+            return URL(string: "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/\(formattedId)/Normal.png")!
+        }
+
 }
 
+extension Pokemon {
+    static func map(entity: PokemonEntity) -> Self? {
+        // If the name is nil, return a MissingNo instance
+        guard let name = entity.name else {
+            return Pokemon(id: 0, name: "MissingNo.")
+        }
+        return Pokemon(id: entity.id, name: name)
+    }
+}
 
 
 struct PokemonResponse: Codable{
@@ -46,7 +47,6 @@ struct PokemonEntity: Codable {
     let id: Int
     let name: String?
     let url: URL?
-    let types: [PokemonTypeWrapper] // Keep this for decoding
 
     // Custom initializer to extract the id and types
     init(from decoder: Decoder) throws {
@@ -55,9 +55,6 @@ struct PokemonEntity: Codable {
         // Decode the name and URL
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
         self.url = try container.decodeIfPresent(URL.self, forKey: .url)
-
-        // Decode types
-        self.types = try container.decode([PokemonTypeWrapper].self, forKey: .types) // Decode to an array of wrappers
 
         // Extract the ID from the URL if it exists
         if let urlString = try container.decodeIfPresent(String.self, forKey: .url),
@@ -73,41 +70,11 @@ struct PokemonEntity: Codable {
     private enum CodingKeys: String, CodingKey {
         case name
         case url
-        case types // The key to decode types
-    }
-}
-
-// Wrapper struct to decode types
-struct PokemonTypeWrapper: Codable {
-    let type: PokemonType // Remove optional if you're sure it will always exist
-
-    private enum CodingKeys: String, CodingKey {
-        case type
     }
 }
 
 
 
-enum PokemonType: String, Codable {
-    case normal = "normal"
-    case fighting = "fighting"
-    case flying = "flying"
-    case poison = "poison"
-    case ground = "ground"
-    case rock = "rock"
-    case bug = "bug"
-    case ghost = "ghost"
-    case steel = "steel"
-    case fire = "fire"
-    case water = "water"
-    case grass = "grass"
-    case electric = "electric"
-    case psychic = "psychic"
-    case ice = "ice"
-    case dragon = "dragon"
-    case dark = "dark"
-    case fairy = "fairy"
-}
 
 
 

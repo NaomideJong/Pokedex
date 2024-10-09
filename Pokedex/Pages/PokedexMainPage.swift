@@ -14,27 +14,26 @@ struct PokedexMainPage: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                switch fetcher.pokemonResult {
-                case nil:
-                    Text("Loading...") // Placeholder while loading
-                        .foregroundColor(.gray)
-                case .success(let response):
-                    List(response.results ?? [], id: \.id) { entity in
-                        if let name = entity.name {
-                            let typesString = entity.types.map { $0.type.rawValue }.joined(separator: ", ")
-                            let pokemon = Pokemon(id: entity.id, name: name, types: typesString)
-                            NavigationLink(destination: PokemonDetailView(pokemon: pokemon)) {
-                                PokemonCell(pokemon: pokemon)
+            VStack() {
+                        switch fetcher.pokemonResult {
+                        case nil:
+                            Text("Loading...") // Placeholder while loading
+                                .foregroundColor(.gray)
+                        case .success(let response):
+                            List(response.results ?? [], id: \.id) { entity in
+                                if let pokemon = Pokemon.map(entity: entity) {
+                                    NavigationLink(destination: PokemonDetailPage(pokemon: pokemon)) {
+                                        PokemonCell(pokemon: pokemon)
+                                    }
+                                }
                             }
+                        case .failure(let error):
+                            Text("Error: \(error.localizedDescription)")
+                                .foregroundColor(.red)
                         }
                     }
-                case .failure(let error):
-                    Text("Error: \(error.localizedDescription)")
-                        .foregroundColor(.red)
-                }
-            }
             .navigationTitle("Pokédex")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Text("Favourites: \(favorites.favorites.count)")
@@ -42,7 +41,7 @@ struct PokedexMainPage: View {
                 }
             }
         }
-        .task { await fetcher.fetchPokemon() }
+        .task { await fetcher.fetchPokemons() }
     }
 }
 

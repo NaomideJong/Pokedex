@@ -11,7 +11,7 @@ import Combine
 class PokeFetcher: ObservableObject {
     @Published var pokemonResult: Result<PokemonResponse, Error>?
     
-    func fetchPokemon() async {
+    func fetchPokemons() async {
             guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=20") else { return }
             
             do {
@@ -27,4 +27,5 @@ class PokeFetcher: ObservableObject {
                 print("Error fetching Pokémon: \(error)")
             }
     }
+
 }
