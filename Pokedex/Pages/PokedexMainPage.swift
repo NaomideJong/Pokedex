@@ -22,7 +22,7 @@ struct PokedexMainPage: View {
                         case .success(let response):
                             List(response.results ?? [], id: \.id) { entity in
                                 if let pokemon = Pokemon.map(entity: entity) {
-                                    NavigationLink(destination: PokemonDetailPage(pokemon: pokemon)) {
+                                    NavigationLink(destination: PokemonDetailView(pokemon: pokemon)) {
                                         PokemonCell(pokemon: pokemon)
                                     }
                                 }
@@ -32,7 +32,7 @@ struct PokedexMainPage: View {
                                 .foregroundColor(.red)
                         }
                     }
-            .navigationTitle("Pokédex")
+            .navigationTitle("Pokédex")//make custom title
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
