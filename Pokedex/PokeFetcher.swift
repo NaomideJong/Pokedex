@@ -12,7 +12,7 @@ class PokeFetcher: ObservableObject {
     @Published var pokemonResult: Result<PokemonResponse, Error>?
     
     func fetchPokemons() async {
-            guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=20") else { return }
+            guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=50") else { return }
             
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)

@@ -17,10 +17,12 @@ struct PokemonGridView: View {
 
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(pokemons, id: \.id) { pokemon in
-                    PokemonCell(pokemon: pokemon)
-                }
+                   LazyVGrid(columns: columns, spacing: 20) {
+                       ForEach(pokemons, id: \.id) { pokemon in
+                           NavigationLink(destination: PokemonDetailView(pokemon: pokemon)) {
+                               PokemonCell(pokemon: pokemon)
+                           }
+                       }
             }
             .padding()
         }
