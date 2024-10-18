@@ -22,7 +22,7 @@ struct PokedexMainPage: View {
                         case .success(let response):
                             List(response.results ?? [], id: \.id) { entity in
                                 if let pokemon = Pokemon.map(entity: entity) {
-                                    NavigationLink(destination: PokemonDetailView(pokemon: pokemon)) {
+                                    NavigationLink(destination: PokemonGridView(pokemons: [pokemon])) {
                                         PokemonCell(pokemon: pokemon)
                                     }
                                 }
