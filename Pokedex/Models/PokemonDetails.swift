@@ -12,12 +12,8 @@ struct PokemonDetails: Codable{
     let abilities: [AbilitiesEntity]?
     let cries: URL?
     let height: Int?
+    let weight: Int?
     let types: [String]?
-
-    var shinyImage: URL {
-        return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png")!
-    }
-    
 }
 
 //extension PokemonDetails {
@@ -36,11 +32,6 @@ struct PokemonDetailResponse: Codable{
     let cries: URL?
     let height: Int?
     let types: [String]?
-
-    var shinyImage: URL {
-        return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png")!
-    }
-    
 }
 
 
