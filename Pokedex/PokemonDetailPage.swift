@@ -8,17 +8,42 @@
 import SwiftUI
 
 struct PokemonDetailPage: View {
-    //let pokemonDetails: PokemonDetails
-    //@StateObject private var detailFetcher = PokeDetailFetcher()
     let pokemon: Pokemon
     @EnvironmentObject var favoritePokemon: PokemonFavorites
+    @StateObject private var detailFetcher = PokeDetailFetcher() // Initialize the detailFetcher
 
     @State private var scale: CGFloat = 1.0
     @State private var shake: Bool = false
     
     var body: some View {
-            VStack {
-                PokemonDetailView(pokemon: pokemon)
+        VStack {
+            // Display the fetched Pokémon details or a loading/error state
+            switch detailFetcher.pokemonResult {
+            case .none:
+                Text("Loading Pokémon details...") // Initial state before fetch
+                    .font(.headline)
+                    .foregroundColor(.gray)
+            case .success(let details):
+                // Display Pokémon details if fetch is successful
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Name: \(pokemon.name)")
+                        .font(.title)
+                        .bold()
+                    Text("Height: \(details.height)")
+                    Text("Weight: \(details.weight)")
+                    //Text("Base Experience: \(details.baseExperience)")
+                }
+                .padding()
+            case .failure(let error):
+                // Display an error message if the fetch fails
+                Text("Failed to load Pokémon details: \(error.localizedDescription)")
+                    .foregroundColor(.red)
+            }
+            
+            Spacer()
+            
+            // Pokémon Detail View
+            PokemonDetailView(pokemon: pokemon)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
@@ -34,15 +59,18 @@ struct PokemonDetailPage: View {
                         })
                     }
                 }
-            }
         }
-    
-    //.task { await detailFetcher.fetchPokemonDetails(pokemon) }
+        .task {
+            // Ensure the ID matches the expected type in fetchPokemonDetails
+            await detailFetcher.fetchPokemonDetails(for: pokemon.id)
+        }
+    }
 }
-
 
 #Preview {
     PokemonDetailPage(pokemon: Pokemon(id: 1, name: "bulbasaur"))
         .environmentObject(PokemonFavorites())
 }
+
+
 	

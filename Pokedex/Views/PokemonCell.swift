@@ -13,7 +13,7 @@ struct PokemonCell: View {
     var body: some View {
         VStack {
             ZStack(alignment: .bottomTrailing) {  // ZStack over the image for bottom-right alignment
-                            AsyncImage(url: pokemon.icon) { image in
+                            AsyncImage(url: pokemon.image) { image in
                                 image
                                     .resizable()
                                     .scaledToFit()

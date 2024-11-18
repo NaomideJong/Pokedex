@@ -14,15 +14,6 @@ struct Pokemon {
         }
         return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png")!
     }
-    
-    var icon: URL {
-            if id == 0 {
-                return URL(string: "https://archives.bulbagarden.net/media/upload/9/98/Missingno_RB.png")!
-            }
-            let formattedId: String = String(format: "%04d", id)
-            return URL(string: "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/\(formattedId)/Normal.png")!
-        }
-
 }
 
 extension Pokemon {
