@@ -18,7 +18,8 @@ struct PokedexMainPage: View {
         NavigationView {
             VStack {
                 if isLoading {
-                    Image("pokeball")                                     .resizable()
+                    Image("pokeball")
+                        .resizable()
                         .frame(width: 60, height: 60)
                         .offset(y: isBouncing ? -15 : 15)
                         .animation(

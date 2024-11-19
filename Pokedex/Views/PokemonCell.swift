@@ -23,7 +23,7 @@ struct PokemonCell: View {
                                 Image("pokeball")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 200, height: 200)
+                                .frame(width: 120, height: 120)
                                 .padding(2)
                             }
                             

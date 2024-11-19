@@ -15,19 +15,15 @@ class PokemonFavorites: ObservableObject {
     
     init(){
         
-        
         if let storedFavorites = UserDefaults.standard.value(forKey: "admin") as? [Int]{
             favorites = storedFavorites
         }
         
-        
         $favorites
             .sink{ favorites in
-                print("favorites updated to \(favorites.count)")
                 UserDefaults.standard.setValue(favorites, forKey: "admin")
             }
             .store(in: &cancellables)
-        
     }
 }
 

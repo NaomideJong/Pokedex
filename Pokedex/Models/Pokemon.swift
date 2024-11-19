@@ -39,7 +39,7 @@ struct PokemonEntity: Codable {
     let name: String?
     let url: URL?
 
-    // Custom initializer to extract the id and types
+    // Custom initializer to extract the id
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
