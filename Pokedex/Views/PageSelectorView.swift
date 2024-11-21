@@ -9,13 +9,24 @@ import SwiftUI
 
 struct PageSelectorView: View {
     @State private var selectedTab: String = "Pokedex"
-    @State private var showTabs: Bool = true // Control visibility of tab buttons
-    @EnvironmentObject var favorites: PokemonFavorites
 
     var body: some View {
-        VStack {
-            // Custom Tab Bar
-            if showTabs {
+        ZStack {
+            VStack {
+                // Page Content
+                if selectedTab == "Pokedex" {
+                    PokedexMainPage()
+                } else if selectedTab == "Favorites" {
+                    FavoritesPage()
+                }
+
+                Spacer() 
+            }
+
+            VStack {
+                Spacer() // Push the tab buttons to the bottom
+
+                // Tab Buttons
                 HStack {
                     Button(action: { selectedTab = "Pokedex" }) {
                         Text("Pokedex")
@@ -34,26 +45,20 @@ struct PageSelectorView: View {
                     }
                 }
                 .padding()
+                .background(Color.white) // Optional: Tab bar background color
+                .cornerRadius(12) // Optional: Tab bar rounded corners
+                .shadow(radius: 10) // Optional: Add shadow to the tab bar
             }
-
-            // Page Content Controlled by Switch
-            Spacer()
-            switch selectedTab {
-            case "Pokedex":
-                PokedexMainPage()
-            case "Favorites":
-                FavoritesPage(showTabs: $showTabs)
-            default:
-                PokedexMainPage()
-            }
-            Spacer()
+            .padding() // Optional: Adjust tab bar padding if needed
         }
+        .edgesIgnoringSafeArea(.bottom) // Ensure the tab bar goes below the safe area
     }
 }
 
 
 
+
+
 #Preview {
     PageSelectorView()
-        .environmentObject(PokemonFavorites())
 }

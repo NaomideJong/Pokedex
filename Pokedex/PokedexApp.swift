@@ -29,12 +29,15 @@ class PokemonFavorites: ObservableObject {
 
 @main
 struct PokedexApp: App {
-    @StateObject var favorites = PokemonFavorites()
-    
+    @StateObject private var pokemonViewModel = PokemonViewModel()
+    @StateObject private var favorites = PokemonFavorites()
+
     var body: some Scene {
         WindowGroup {
             PageSelectorView()
+                .environmentObject(pokemonViewModel)
                 .environmentObject(favorites)
         }
     }
 }
+

@@ -8,45 +8,59 @@
 import SwiftUI
 
 struct PokedexMainPage: View {
-    @State var pokemon: Result<[Pokemon], Error>?
-    @StateObject private var fetcher = PokeFetcher()
+    @EnvironmentObject var pokemonViewModel: PokemonViewModel
     @EnvironmentObject var favorites: PokemonFavorites
-    @State private var isLoading: Bool = true
+    @State private var searchQuery: String = ""
 
     var body: some View {
         NavigationView {
-            VStack {
-                if isLoading {
-                    Image("pokeball")
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                } else {
-                    switch fetcher.pokemonResult {
-                    case nil:
-                        Text("Loading...")
-                            .foregroundColor(.gray)
-                    case .success(let response):
-                        if let results = response.results, !results.isEmpty {
-                            PokemonGridView(pokemons: results.compactMap { Pokemon.map(entity: $0) })
-                        } else {
-                            Text("No Pokémon found.")
+            VStack(spacing: 0) { // Stack without spacing to remove gaps
+                // Sticky Search Bar
+                TextField("Search Pokémon...", text: $searchQuery)
+                    .padding(10)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+                    .padding(.vertical, 5)
+
+                // Scrollable Content
+                ScrollView {
+                    if pokemonViewModel.isLoading {
+                        Image("pokeball")
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .padding(.top)
+                    } else {
+                        switch pokemonViewModel.pokemonResult {
+                        case nil:
+                            Text("Loading...")
                                 .foregroundColor(.gray)
-                        }
-                    case .failure(_):
-                        // Display error message and a retry button
-                        VStack {
-                            Text("Pokemon couldn't be loaded, try again later.")
-                                .foregroundColor(.red)
-                                .padding()
-                            Button(action: {
-                                retryFetching() // Retry the fetch operation
-                            }) {
-                                Text("Retry")
-                                    .font(.headline)
+                                .padding(.top)
+                        case .success(let pokemons):
+                            if !filteredPokemons(pokemons: pokemons).isEmpty {
+                                PokemonGridView(pokemons: filteredPokemons(pokemons: pokemons))
+                            } else {
+                                Text("No Pokémon found.")
+                                    .foregroundColor(.gray)
+                                    .padding(.top)
+                            }
+                        case .failure(let error):
+                            VStack {
+                                Text("Error: \(error.localizedDescription)")
+                                    .foregroundColor(.red)
                                     .padding()
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
+                                Button(action: {
+                                    Task {
+                                        await pokemonViewModel.fetchPokemons()
+                                    }
+                                }) {
+                                    Text("Retry")
+                                        .font(.headline)
+                                        .padding()
+                                        .background(Color.blue)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
+                                }
                             }
                         }
                     }
@@ -62,29 +76,22 @@ struct PokedexMainPage: View {
             }
         }
         .task {
-            await fetchPokemons()
+            if pokemonViewModel.pokemonResult == nil {
+                await pokemonViewModel.fetchPokemons()
+            }
         }
     }
 
-    private func retryFetching() {
-        isLoading = true
-        Task {
-            await fetchPokemons()
-        }
-    }
-
-    private func fetchPokemons() async {
-        do {
-            try await fetcher.fetchPokemons()
-            isLoading = false
-        } catch {
-            isLoading = false
+    // Filter Pokémon Based on Search Query
+    private func filteredPokemons(pokemons: [Pokemon]) -> [Pokemon] {
+        if searchQuery.isEmpty {
+            return pokemons
+        } else {
+            return pokemons.filter { $0.name.localizedCaseInsensitiveContains(searchQuery) }
         }
     }
 }
 
-#Preview {
-    PokedexMainPage()
-        .environmentObject(PokemonFavorites())
-}
+
+
 
