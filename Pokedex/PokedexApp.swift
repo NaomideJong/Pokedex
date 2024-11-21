@@ -33,7 +33,7 @@ struct PokedexApp: App {
     
     var body: some Scene {
         WindowGroup {
-            PokedexMainPage()
+            PageSelectorView()
                 .environmentObject(favorites)
         }
     }

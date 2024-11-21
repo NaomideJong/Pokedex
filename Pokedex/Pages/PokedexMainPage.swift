@@ -12,7 +12,6 @@ struct PokedexMainPage: View {
     @StateObject private var fetcher = PokeFetcher()
     @EnvironmentObject var favorites: PokemonFavorites
     @State private var isLoading: Bool = true
-    @State private var isBouncing = false
 
     var body: some View {
         NavigationView {
@@ -21,17 +20,6 @@ struct PokedexMainPage: View {
                     Image("pokeball")
                         .resizable()
                         .frame(width: 60, height: 60)
-                        .offset(y: isBouncing ? -15 : 15)
-                        .animation(
-                           Animation.easeInOut(duration: 0.6)
-                            .repeatForever(autoreverses: true), value: isBouncing
-                            )
-                            .onAppear {
-                               isBouncing = true
-                              }
-                                Text("Loading...") 
-                                    .foregroundColor(.gray)
-                                    .padding(.top, 8)
                 } else {
                     switch fetcher.pokemonResult {
                     case nil:
@@ -44,10 +32,10 @@ struct PokedexMainPage: View {
                             Text("No Pokémon found.")
                                 .foregroundColor(.gray)
                         }
-                    case .failure(let error):
+                    case .failure(_):
                         // Display error message and a retry button
                         VStack {
-                            Text("Error: \(error.localizedDescription)")
+                            Text("Pokemon couldn't be loaded, try again later.")
                                 .foregroundColor(.red)
                                 .padding()
                             Button(action: {

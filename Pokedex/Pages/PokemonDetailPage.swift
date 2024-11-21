@@ -12,9 +12,6 @@ struct PokemonDetailPage: View {
     @EnvironmentObject var favoritePokemon: PokemonFavorites
     @StateObject private var detailFetcher = PokeDetailFetcher() 
 
-    @State private var scale: CGFloat = 1.0
-    @State private var shake: Bool = false
-    
     var body: some View {
         VStack {
             
@@ -77,7 +74,7 @@ struct PokemonDetailPage: View {
                 }
             }
         }
-        .navigationTitle(pokemon.name.capitalized)
+        .toolbar(.hidden, for: .tabBar)
         .task {
             // Ensure the ID matches the expected type in fetchPokemonDetails
             await detailFetcher.fetchPokemonDetails(for: pokemon.id)
