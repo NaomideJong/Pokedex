@@ -28,9 +28,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08B424FF2CAE7BB40058B106 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		08B425102CAE7BB60058B106 /* PokedexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokedexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		08B4251A2CAE7BB60058B106 /* PokedexUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokedexUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		08B424FF2CAE7BB40058B106 /* Pokedex-562748.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pokedex-562748.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		08B425102CAE7BB60058B106 /* Pokedex-562748Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pokedex-562748Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		08B4251A2CAE7BB60058B106 /* Pokedex-562748UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pokedex-562748UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08FC16E82CF14B5E0054C994 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,9 +91,9 @@
 		08B425002CAE7BB40058B106 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				08B424FF2CAE7BB40058B106 /* Pokedex.app */,
-				08B425102CAE7BB60058B106 /* PokedexTests.xctest */,
-				08B4251A2CAE7BB60058B106 /* PokedexUITests.xctest */,
+				08B424FF2CAE7BB40058B106 /* Pokedex-562748.app */,
+				08B425102CAE7BB60058B106 /* Pokedex-562748Tests.xctest */,
+				08B4251A2CAE7BB60058B106 /* Pokedex-562748UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,9 +101,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		08B424FE2CAE7BB40058B106 /* Pokedex */ = {
+		08B424FE2CAE7BB40058B106 /* Pokedex-562748 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 08B425242CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "Pokedex" */;
+			buildConfigurationList = 08B425242CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "Pokedex-562748" */;
 			buildPhases = (
 				08B424FB2CAE7BB40058B106 /* Sources */,
 				08B424FC2CAE7BB40058B106 /* Frameworks */,
@@ -116,16 +116,16 @@
 			fileSystemSynchronizedGroups = (
 				08B425012CAE7BB40058B106 /* Pokedex */,
 			);
-			name = Pokedex;
+			name = "Pokedex-562748";
 			packageProductDependencies = (
 			);
 			productName = Pokedex;
-			productReference = 08B424FF2CAE7BB40058B106 /* Pokedex.app */;
+			productReference = 08B424FF2CAE7BB40058B106 /* Pokedex-562748.app */;
 			productType = "com.apple.product-type.application";
 		};
-		08B4250F2CAE7BB60058B106 /* PokedexTests */ = {
+		08B4250F2CAE7BB60058B106 /* Pokedex-562748Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 08B425272CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "PokedexTests" */;
+			buildConfigurationList = 08B425272CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "Pokedex-562748Tests" */;
 			buildPhases = (
 				08B4250C2CAE7BB60058B106 /* Sources */,
 				08B4250D2CAE7BB60058B106 /* Frameworks */,
@@ -139,16 +139,16 @@
 			fileSystemSynchronizedGroups = (
 				08B425132CAE7BB60058B106 /* PokedexTests */,
 			);
-			name = PokedexTests;
+			name = "Pokedex-562748Tests";
 			packageProductDependencies = (
 			);
 			productName = PokedexTests;
-			productReference = 08B425102CAE7BB60058B106 /* PokedexTests.xctest */;
+			productReference = 08B425102CAE7BB60058B106 /* Pokedex-562748Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		08B425192CAE7BB60058B106 /* PokedexUITests */ = {
+		08B425192CAE7BB60058B106 /* Pokedex-562748UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 08B4252A2CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "PokedexUITests" */;
+			buildConfigurationList = 08B4252A2CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "Pokedex-562748UITests" */;
 			buildPhases = (
 				08B425162CAE7BB60058B106 /* Sources */,
 				08B425172CAE7BB60058B106 /* Frameworks */,
@@ -162,11 +162,11 @@
 			fileSystemSynchronizedGroups = (
 				08B4251D2CAE7BB60058B106 /* PokedexUITests */,
 			);
-			name = PokedexUITests;
+			name = "Pokedex-562748UITests";
 			packageProductDependencies = (
 			);
 			productName = PokedexUITests;
-			productReference = 08B4251A2CAE7BB60058B106 /* PokedexUITests.xctest */;
+			productReference = 08B4251A2CAE7BB60058B106 /* Pokedex-562748UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -192,7 +192,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 08B424FA2CAE7BB40058B106 /* Build configuration list for PBXProject "Pokedex" */;
+			buildConfigurationList = 08B424FA2CAE7BB40058B106 /* Build configuration list for PBXProject "Pokedex-562748" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -206,9 +206,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				08B424FE2CAE7BB40058B106 /* Pokedex */,
-				08B4250F2CAE7BB60058B106 /* PokedexTests */,
-				08B425192CAE7BB60058B106 /* PokedexUITests */,
+				08B424FE2CAE7BB40058B106 /* Pokedex-562748 */,
+				08B4250F2CAE7BB60058B106 /* Pokedex-562748Tests */,
+				08B425192CAE7BB60058B106 /* Pokedex-562748UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -265,12 +265,12 @@
 /* Begin PBXTargetDependency section */
 		08B425122CAE7BB60058B106 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 08B424FE2CAE7BB40058B106 /* Pokedex */;
+			target = 08B424FE2CAE7BB40058B106 /* Pokedex-562748 */;
 			targetProxy = 08B425112CAE7BB60058B106 /* PBXContainerItemProxy */;
 		};
 		08B4251C2CAE7BB60058B106 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 08B424FE2CAE7BB40058B106 /* Pokedex */;
+			target = 08B424FE2CAE7BB40058B106 /* Pokedex-562748 */;
 			targetProxy = 08B4251B2CAE7BB60058B106 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -483,7 +483,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pokedex";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex-562748.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pokedex-562748";
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
@@ -505,7 +505,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pokedex";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokedex-562748.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Pokedex-562748";
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
@@ -555,7 +555,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		08B424FA2CAE7BB40058B106 /* Build configuration list for PBXProject "Pokedex" */ = {
+		08B424FA2CAE7BB40058B106 /* Build configuration list for PBXProject "Pokedex-562748" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				08B425222CAE7BB60058B106 /* Debug */,
@@ -564,7 +564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		08B425242CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "Pokedex" */ = {
+		08B425242CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "Pokedex-562748" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				08B425252CAE7BB60058B106 /* Debug */,
@@ -573,7 +573,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		08B425272CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "PokedexTests" */ = {
+		08B425272CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "Pokedex-562748Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				08B425282CAE7BB60058B106 /* Debug */,
@@ -582,7 +582,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		08B4252A2CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "PokedexUITests" */ = {
+		08B4252A2CAE7BB60058B106 /* Build configuration list for PBXNativeTarget "Pokedex-562748UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				08B4252B2CAE7BB60058B106 /* Debug */,
