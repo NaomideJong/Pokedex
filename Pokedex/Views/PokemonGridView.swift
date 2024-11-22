@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PokemonGridView: View {
     let pokemons: [Pokemon]
+    @Binding var isDetailPage: Bool // Bind to track navigation
 
     let columns = [
         GridItem(.flexible()),
@@ -17,32 +18,21 @@ struct PokemonGridView: View {
 
     var body: some View {
         ScrollView {
-                   LazyVGrid(columns: columns, spacing: 20) {
-                       ForEach(pokemons, id: \.id) { pokemon in
-                           NavigationLink(destination: PokemonDetailPage(pokemon: pokemon)) {
-                               PokemonCell(pokemon: pokemon)
-                           }
-                       }
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(pokemons, id: \.id) { pokemon in
+                    NavigationLink(
+                        destination: PokemonDetailPage(pokemon: pokemon)
+                            .onAppear { isDetailPage = true } // Set detail page to true
+                            .onDisappear { isDetailPage = false } // Reset on leaving detail
+                    ) {
+                        PokemonCell(pokemon: pokemon)
+                    }
+                }
             }
             .padding()
         }
-        .navigationTitle("Pokédex")
     }
 }
 
 
 
-struct PokemonGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        let mockPokemons = [
-            Pokemon(id: 92, name: "Gastly"),
-            Pokemon(id: 93, name: "Haunter"),
-            Pokemon(id: 94, name: "Gengar"),
-            Pokemon(id: 0, name: "MissingNo.")
-        ]
-
-        NavigationView {
-            PokemonGridView(pokemons: mockPokemons)
-        }
-    }
-}

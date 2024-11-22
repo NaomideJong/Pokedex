@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		08FC16E92CF14B5E0054C994 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 08FC16E82CF14B5E0054C994 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		08B425112CAE7BB60058B106 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		08B424FF2CAE7BB40058B106 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B425102CAE7BB60058B106 /* PokedexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokedexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B4251A2CAE7BB60058B106 /* PokedexUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokedexUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		08FC16E82CF14B5E0054C994 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		08B424F62CAE7BB40058B106 = {
 			isa = PBXGroup;
 			children = (
+				08FC16E82CF14B5E0054C994 /* README.md */,
 				08B425012CAE7BB40058B106 /* Pokedex */,
 				08B425132CAE7BB60058B106 /* PokedexTests */,
 				08B4251D2CAE7BB60058B106 /* PokedexUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08FC16E92CF14B5E0054C994 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@ struct PokedexMainPage: View {
     @EnvironmentObject var pokemonViewModel: PokemonViewModel
     @EnvironmentObject var favorites: PokemonFavorites
     @State private var searchQuery: String = ""
+    @Binding var isDetailPage: Bool
 
     var body: some View {
         NavigationView {
@@ -30,6 +31,9 @@ struct PokedexMainPage: View {
                             .resizable()
                             .frame(width: 60, height: 60)
                             .padding(.top)
+                        Text("Loading...")
+                            .foregroundColor(.gray)
+                            .padding(.top)
                     } else {
                         switch pokemonViewModel.pokemonResult {
                         case nil:
@@ -38,18 +42,20 @@ struct PokedexMainPage: View {
                                 .padding(.top)
                         case .success(let pokemons):
                             if !filteredPokemons(pokemons: pokemons).isEmpty {
-                                PokemonGridView(pokemons: filteredPokemons(pokemons: pokemons))
+                                PokemonGridView(pokemons: filteredPokemons(pokemons: pokemons), isDetailPage: $isDetailPage)
                             } else {
                                 Text("No Pokémon found.")
                                     .foregroundColor(.gray)
                                     .padding(.top)
                             }
-                        case .failure(let error):
+                        case .failure(_):
                             VStack {
-                                Text("Error: \(error.localizedDescription)")
+                                Text("There was an error trying to load the Pokémon. Please try again later.")
                                     .foregroundColor(.red)
                                     .padding()
                                 Button(action: {
+                                    // Trigger loading and fetch Pokémon
+                                    pokemonViewModel.isLoading = true
                                     Task {
                                         await pokemonViewModel.fetchPokemons()
                                     }
@@ -68,12 +74,6 @@ struct PokedexMainPage: View {
             }
             .navigationTitle("Pokédex")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Text("Favourites: \(favorites.favorites.count)")
-                        .font(.subheadline)
-                }
-            }
         }
         .task {
             if pokemonViewModel.pokemonResult == nil {
@@ -91,7 +91,5 @@ struct PokedexMainPage: View {
         }
     }
 }
-
-
 
 

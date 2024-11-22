@@ -14,48 +14,62 @@ struct PokemonDetailPage: View {
 
     var body: some View {
         ScrollView {
-            VStack {
-                
-                Text(pokemon.name.capitalized)
-                    .font(.title)
-                    .bold()
-                    .padding()
-                
-                
+            VStack(spacing: 16) {
+                HStack {
+                    Text(pokemon.name.capitalized)
+                        .font(.title)
+                        .bold()
+                    Spacer()
+                    Text("#\(String(format: "%04d", pokemon.id))") // Format ID as #0001
+                        .font(.headline)
+                        .bold()
+                }
+                .padding()
+
+                // Display Pokémon types
+                if case .success(let details) = detailFetcher.pokemonResult {
+                    let types = details.types
+                    VStack(alignment: .leading) {
+                        HStack(spacing: 10) {
+                            ForEach(types, id: \.type.name) { typeInfo in
+                                Text(typeInfo.type.name.capitalized)
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .padding(15)
+                                    .background(TypeColors.color(for: typeInfo.type.name))
+                                    .cornerRadius(20)
+                                    .foregroundColor(.white)
+                            }
+                            Spacer()
+                        }
+
+                    }
+                    .padding(.horizontal)
+                }
+
                 // Pokémon Detail View
                 PokemonDetailView(pokemon: pokemon)
-                
-                // Display the fetched Pokémon details or a loading/error state
+
+                // Display fetched Pokémon details or a loading/error state
                 switch detailFetcher.pokemonResult {
                 case .none:
                     Text("Loading Pokémon details...") // Initial state before fetch
                         .font(.headline)
                         .foregroundColor(.gray)
                 case .success(let details):
-                    
-                    // Display Pokémon details if fetch is successful
-                    VStack(alignment: .leading, spacing: 15) {
-                        Text("Name: \(pokemon.name)")
-                            .font(.title3)
-                        Text("ID: \(pokemon.id)")
-                            .font(.title3)
+                    // Pokémon details
+                    VStack(alignment: .leading, spacing: 10) {
                         Text("Base Experience: \(details.baseExperience)")
                             .font(.title3)
                         Text("Height: \(details.height)")
                             .font(.title3)
                         Text("Weight: \(details.weight)")
                             .font(.title3)
-                        
-                        Text("Type: \(details.types.map { $0.type.name.capitalized }.joined(separator: ", "))")
-                            .font(.title3)
-                        
                         Text("Abilities: \(details.abilities.map { $0.ability.name.capitalized }.joined(separator: ", "))")
                             .font(.title3)
-                        
                     }
                     .padding()
                 case .failure(let error):
-                    // Display an error message if the fetch fails
                     Text("Failed to load Pokémon details: \(error.localizedDescription)")
                         .foregroundColor(.red)
                 }
@@ -75,14 +89,14 @@ struct PokemonDetailPage: View {
                     }
                 }
             }
-            .toolbar(.hidden, for: .tabBar)
             .task {
-                // Ensure the ID matches the expected type in fetchPokemonDetails
+                // Fetch Pokémon details
                 await detailFetcher.fetchPokemonDetails(for: pokemon.id)
             }
         }
     }
 }
+
 
 #Preview {
     PokemonDetailPage(pokemon: Pokemon(id: 1, name: "bulbasaur"))

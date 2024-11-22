@@ -2,7 +2,7 @@
 //  PokemonDetailFetcher.swift
 //  Pokedex
 //
-//  Created by admin on 10/9/24.
+//  Created by Naomi de Jong on 10/9/24.
 //
 
 import Foundation
